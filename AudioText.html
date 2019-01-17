@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="SetAudio" style="display:none;">
+
+            <label for="xSET_AudioBufLength">Audio buffer length [ms]:</label>
+            <input type="text" id="xSET_AudioBufLength" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_ToneFreqMode">Base tone mode:</label>
+            <select id="xSET_ToneFreqMode" onchange="SettingsSet(0);">
+                <option value="0">Center</option>
+                <option value="1">Lowest</option>
+                <option value="2">Highest</option>
+            </select>
+            <br>
+
+            <label for="xSET_ToneFreqBase">Base tone frequency [Hz]:</label>
+            <input type="text" id="xSET_ToneFreqBase" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_ToneFreqDist">Frequency between tones [Hz]:</label>
+            <input type="text" id="xSET_ToneFreqDist" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_ToneVolSamples">Tone fade samples:</label>
+            <input type="text" id="xSET_ToneVolSamples" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_ToneVol">Tone volume [%]:</label>
+            <input type="text" id="xSET_ToneVol" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_PixelSamples">Samples per pixel:</label>
+            <input type="text" id="xSET_PixelSamples" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_PixelLines">Tones per pixel:</label>
+            <input type="text" id="xSET_PixelLines" onchange="SettingsSet(0);" size="5">
+            <br>
+
+            <label for="xSET_FontOrientation">Font orientation:</label>
+            <select id="xSET_FontOrientation" onchange="SettingsSet(1);">
+                <option value="0">0&#176; no flip</option>
+                <option value="1">90&#176; no flip</option>
+                <option value="2">180&#176; no flip</option>
+                <option value="3">270&#176; no flip</option>
+                <option value="4">0&#176; flip</option>
+                <option value="5">90&#176; flip</option>
+                <option value="6">180&#176; flip</option>
+                <option value="7">270&#176; flip</option>
+            </select>
+            <br>
+
+            <label for="xSET_Autostart">Auto send:</label>
+            <select id="xSET_Autostart" onchange="SettingsSet(0);">
+                <option value="0">Disabled</option>
+                <option value="1">Enabled</option>
+            </select>
+            <br>
+
+            <label for="xSET_EnterKey">Enter key:</label>
+            <select id="xSET_EnterKey" onchange="SettingsSet(0);">
+                <option value="0">Send text</option>
+                <option value="1">Backspace</option>
+            </select>
+            <br>
+
+            <input type="button" onClick="Test()" value="Test">
+            <br>
+
+        </div>
+        <div id="SetCanvas" style="display:none;">
+
+            <label>Canvas text size:</label>
+            <input type="text" id="xSET_CanvasW" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_CanvasH" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Canvas pixel size:</label>
+            <input type="text" id="xSET_CanvasScaleX" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_CanvasScaleY" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Canvas blank color:</label>
+            <input type="text" id="xSET_ColorBackR" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorBackG" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorBackB" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Text background color:</label>
+            <input type="text" id="xSET_ColorTextBackR" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorTextBackG" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorTextBackB" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Text foreground color:</label>
+            <input type="text" id="xSET_ColorTextForeR" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorTextForeG" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorTextForeB" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Current background color:</label>
+            <input type="text" id="xSET_ColorCurrBackR" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorCurrBackG" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorCurrBackB" onchange="SettingsSet(2);" size="5">
+            <br>
+
+            <label>Current foreground color:</label>
+            <input type="text" id="xSET_ColorCurrForeR" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorCurrForeG" onchange="SettingsSet(2);" size="5">
+            <input type="text" id="xSET_ColorCurrForeB" onchange="SettingsSet(2);" size="5">
+            <br>
+
+        </div>
+
+        <input type="button" id="BtnStart" onClick="Start()" value="Send">
+        <input type="button" id="BtnClear" onClick="CharClear()" value="Back">
+        <input type="button" id="BtnSetAudio" onClick="SetAudio()" value="Audio">
+        <input type="button" id="BtnSetCanvas" onClick="SetCanvas()" value="Canvas">
+        <textarea rows="1" cols="1" style="resize:none" id="InputText" oninput="InputTextEvent(event)"></textarea>
+        <br>
+        <canvas id="TextScreen"></canvas>
+        <br>
+        <br>
+        <br>
+        <br>
+        <span id="X"></span>
+        <script src="unistorage.js"></script>
+        <script src="font.js"></script>
+        <script src="text.js"></script>
+        <script src="core.js"></script>
+    </body>
+</html>
