@@ -464,7 +464,7 @@ function Print2(X)
 
 var FontWork = new Array();
 var TestGlyphIndex = 65536;
-var BitPos = new Array()
+var BitPos = new Array();
 var II = 1 << (FontSize - 1);
 Font[TestGlyphIndex] = new Array();
 for (var I = 0; I < FontSize; I++)
@@ -719,7 +719,7 @@ function InitAudio()
         {
             AudioBufCount--;
             GetAudio();
-        }
+        };
         AudioBufCount++;
         source_.start(0, 0, AudioBufLengthTime / 5);
         GetAudio();
